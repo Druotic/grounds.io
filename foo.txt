@@ -4,4 +4,4 @@ bar
 foo
 bar
 
-fo
+f
