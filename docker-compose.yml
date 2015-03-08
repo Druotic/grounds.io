@@ -11,9 +11,11 @@ web:
     - RAILS_ENV
     - TEST_OPTS
     - DOCKER_URL
+    - RUNNER_URL
     - SECRET_KEY_BASE
     - NEWRELIC_LICENSE_KEY
     - NEWRELIC_APP_NAME
+    - PIWIK_URL
 
 redis:
   image: dockerfile/redis

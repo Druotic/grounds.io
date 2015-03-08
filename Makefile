@@ -1,4 +1,4 @@
-.PHONY: all re clean build install update pull push run detach test console
+.PHONY: all re clean build shell pull push run detach test runner
 
 REPOSITORY := $(if $(REPOSITORY),$(REPOSITORY),'grounds')
 TAG        := $(if $(TAG),$(TAG),'latest')
@@ -8,10 +8,10 @@ RAILS_ENV  := $(if $(RAILS_ENV),$(RAILS_ENV),'development')
 # but it should be changed in production.
 SECRET_KEY_BASE := $(if $(SECRET_KEY_BASE),$(SECRET_KEY_BASE),'729ef9ead52e970ae6c02c30ff1be69409c603036990fb11f5701a48fff0626f6259c58b0ccdd1f8b1e7a81bc59e61240cd0411e74c4a7b6094f371369f97caf')
 
-env       := RAILS_ENV=$(RAILS_ENV)
+env       := RAILS_ENV=$(RAILS_ENV) REPOSITORY=$(REPOSITORY)
 secret    := SECRET_KEY_BASE=$(SECRET_KEY_BASE)
-compose   := fig -p groundsio
-run       := $(compose) run web
+compose   := docker-compose -p groundsio
+run       := $(compose) run --service-ports web
 
 all: detach
 
@@ -25,14 +25,6 @@ clean:
 build:
 	$(compose) build web
 
-# Install gems in Gemfile.lock
-install: clean
-	$(env) $(run) bundle install
-
-# Update gems in Gemfile.lock
-update: clean
-	$(env) $(run) bundle update
-
 # Pull every images required to run
 pull:
 	scripts/pull.sh $(REPOSITORY)
@@ -41,17 +33,19 @@ pull:
 push:
 	scripts/push.sh $(REPOSITORY) $(TAG)
 
-run: build clean
-	$(env) $(secret) $(compose) up
+run: build clean runner
+	$(env) $(secret) $(run) rake run
 
 detach:
 	$(env) $(secret) $(compose) up -d
 
-test: build clean
-	$(compose) up -d runner
-	RAILS_ENV="test" $(run) rake test
+test: build clean runner
+	$(env) $(run) rake test
 
-# Open rails console
-console: build clean
+# Open a shell with everything set up
+shell: build clean runner
 	touch pry/.pry_history
-	$(env) $(run) rails console
+	$(env) $(run) /bin/bash
+
+runner:
+	$(env) $(compose) up -d runner

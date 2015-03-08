@@ -15,6 +15,7 @@ end
 
 task :test => :environment do
   sh <<-EOF
+  RAILS_ENV=test
   RUNNER_URL=#{runner_url} \
   bundle exec rspec --format documentation --color #{TEST_OPTS}
   EOF
@@ -27,7 +28,7 @@ end
 # Fetch runner url from env (if running natively),
 # or look for a runner on the same docker host
 def runner_url
-  ENV['RUNNER_URL'] || docker_url_with(8080)
+  ENV['RUNNER_URL'].presence || docker_url_with(8080)
 end
 
 # Fetch redis url from env (if running natively),
