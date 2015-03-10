@@ -2,6 +2,6 @@ foo
 bar
 
 foo
-bar
+bar2
 
 
