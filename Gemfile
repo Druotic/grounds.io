@@ -37,6 +37,7 @@ group :test do
   gem 'poltergeist', '~> 1.5'
   gem 'simplecov', '~> 0.9.2', require: false
   gem 'simplecov-json', require: false
+  gem 'brakeman', require: false
 end
 
 group :production do
