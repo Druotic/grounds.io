@@ -5,6 +5,14 @@ require 'shoulda/matchers'
 require 'capybara/rails'
 require 'capybara/poltergeist'
 require 'rack_session_access/capybara'
+require 'simplecov'
+require 'simplecov-json'
+
+SimpleCov.formatters = [
+  SimpleCov::Formatter::JSONFormatter,
+  SimpleCov::Formatter::HTMLFormatter
+]
+SimpleCov.start
 
 [
   'support',

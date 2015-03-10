@@ -35,6 +35,8 @@ group :test do
   gem 'mock_redis', '~> 0.13'
   gem 'capybara', '~> 2.4'
   gem 'poltergeist', '~> 1.5'
+  gem 'simplecov', '~> 0.9.2', require: false
+  gem 'simplecov-json', require: false
 end
 
 group :production do
