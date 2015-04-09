@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 feature 'Footer' do
+  subject(:footer) { find('footer') }
+
   before(:each) do
     visit(root_path)
   end
@@ -9,9 +11,5 @@ feature 'Footer' do
     scenario "has a link to #{description}" do
       expect(footer).to have_link(name, href: href)
     end
-  end
-
-  def footer
-    find('footer')
   end
 end

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature 'Sidemenu' do
-  let(:sidemenu) { SideMenu.new}
+  subject(:sidemenu) { SideMenu.new}
 
   before(:each) do
     visit(root_path)
@@ -27,7 +27,7 @@ feature 'Sidemenu' do
     end
 
     scenario 'can be closed' do
-      sidemenu.close
+      subject.close
 
       expect(sidemenu).not_to be_open
     end

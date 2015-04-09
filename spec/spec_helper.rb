@@ -14,6 +14,11 @@ SimpleCov.formatters = [
 ]
 SimpleCov.start
 
+if ENV['CODECLIMATE_REPO_TOKEN'].present?
+  require 'codeclimate-test-reporter'
+  CodeClimate::TestReporter.start
+end
+
 [
   'support',
   'features/page_objects',

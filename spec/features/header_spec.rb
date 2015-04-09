@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 feature 'Header' do
+  subject(:header) { find('.header') }
+
+  let(:root_title) { I18n.t('site.title') }
+
   before(:each) do
     visit(root_path)
   end
@@ -16,6 +20,8 @@ feature 'Header' do
   end
 
   context 'on a small screen', js: true do
+    subject(:header) { find('.header-small') }
+
     let(:screen) { Screen.new }
 
     before(:each) do
@@ -23,19 +29,7 @@ feature 'Header' do
     end
 
     scenario 'has a link to site root' do
-      expect(header_small).to have_link(root_title, href: root_path)
+      expect(header).to have_link(root_title, href: root_path)
     end
-  end
-
-  def header
-    find('.header')
-  end
-
-  def header_small
-    find('.header-small')
-  end
-
-  def root_title
-    I18n.t('site.title')
   end
 end

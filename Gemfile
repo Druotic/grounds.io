@@ -37,6 +37,7 @@ group :test do
   gem 'poltergeist', '~> 1.5'
   gem 'simplecov', '~> 0.9.2', require: false
   gem 'simplecov-json', require: false
+  gem 'codeclimate-test-reporter', require: false
 end
 
 group :production do
@@ -49,7 +50,7 @@ gem 'modernizr-rails', '~> 2.7'
 gem 'mousetrap-rails', '~> 1.4'
 gem 'font-awesome-rails', '~> 4.2'
 gem 'foundation-rails', '~> 5.4.5'
-gem 'socket.io-rails', '~> 1.2'
+gem 'socket.io-rails', '~> 1.3'
 gem 'piwik_analytics'
 
 gem 'puma', '~> 2.9'
