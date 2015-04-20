@@ -4,6 +4,7 @@ set -e
 
 service docker start
 cd /grounds
+docker-compose --version
 make run
 cd -
 
