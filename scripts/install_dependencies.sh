@@ -2,7 +2,7 @@
 
 set -e
 
-sudo apt-get install docker make
-sudo pip install -U docker-compose 
+apt-get install docker make
+pip install -U docker-compose 
 
 exit 0
