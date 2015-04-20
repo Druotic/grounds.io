@@ -2,7 +2,7 @@
 
 set -e
 
-apt-get install docker make
+yum install -y docker make
 pip install -U docker-compose 
 
 exit 0
