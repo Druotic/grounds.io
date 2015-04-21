@@ -9,9 +9,13 @@ cd /grounds
 /usr/local/bin/docker-compose --version
 export PATH=/usr/local/bin:$PATH
 make pull 2>&1 | tee -a $LOG_FILE                                                                                                                                                                                  
+
 echo "-----------" >> $LOG_FILE
 echo "end pull, begin run" >> $LOG_FILE
 echo "-----------" >> $LOG_FILE
+
+chmod 664 Gemfile.lock
+
 make run 2>&1 | tee -a $LOG_FILE
 cd -
 
