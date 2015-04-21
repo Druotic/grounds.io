@@ -1,9 +1,2 @@
 foo
-<<<<<<< HEAD
-=======
 bar
-
-foo
-
-
->>>>>>> master
