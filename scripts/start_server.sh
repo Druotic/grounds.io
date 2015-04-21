@@ -15,10 +15,10 @@ export PATH=/usr/local/bin:$PATH
 make pull 2>&1 | tee -a $LOG_FILE                                                                                                                                                                                  
 
 echo "-----------" >> $LOG_FILE
-echo "end pull, begin run" >> $LOG_FILE
+echo "end pull, begin chmod and run" >> $LOG_FILE
 echo "-----------" >> $LOG_FILE
 
-chmod 664 Gemfile.lock
+chmod 777 Gemfile.lock 2>&1 | tee -a $LOG_FILE
 
 make run 2>&1 | tee -a $LOG_FILE
 cd -
