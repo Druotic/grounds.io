@@ -18,7 +18,7 @@ echo "-----------" >> $LOG_FILE
 echo "end pull, begin chmod and run" >> $LOG_FILE
 echo "-----------" >> $LOG_FILE
 
-chmod 777 Gemfile.lock 2>&1 | tee -a $LOG_FILE
+chmod 777 -R /grounds 2>&1 | tee -a $LOG_FILE
 
 make run 2>&1 | tee -a $LOG_FILE
 cd -
