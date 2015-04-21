@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe GroundsController do
   describe '#switch_option' do
-    before(:each) do
+    before do
       put(:switch_option, option: option, code: code)
     end
 
@@ -39,7 +39,7 @@ describe GroundsController do
   end
 
   describe '#share' do
-    before(:each) do
+    before do
       post(:share, ground: ground.attributes)
     end
 
@@ -52,6 +52,7 @@ describe GroundsController do
 
       it 'responds with ground shared url' do
         ground.save
+
         expected = ground_shared_url(ground)
 
         shared_url = JSON.parse(response.body)['shared_url']

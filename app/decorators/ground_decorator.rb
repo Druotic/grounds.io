@@ -1,10 +1,8 @@
 class GroundDecorator < BaseDecorator
   def editor_data
-    data = initial_data
-    %i(theme indent keyboard).each do |option|
+    %i(theme indent keyboard).each_with_object(initial_data) do |option, data| 
       data[option] = session_or_default(option)
     end
-    data
   end
 
   def shortcuts
@@ -14,7 +12,6 @@ class GroundDecorator < BaseDecorator
       ['⌘ / ctrl', '←', I18n.t('editor.back')],
     ]
   end
-
 
   def selected_label(option)
     editor.option_label(option, editor_data[option])

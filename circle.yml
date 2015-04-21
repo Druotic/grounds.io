@@ -1,4 +1,6 @@
 machine:
+  pre:
+    - sudo pip install -U docker-compose
   services:
     - docker
 
@@ -9,13 +11,12 @@ database:
 
 dependencies:
   override:
-    - sudo pip install -U docker-compose
     - docker-compose --version
 
 test:
   override:
     - docker-compose build web
-    - docker-compose run --no-deps web rake test
+    - docker-compose run --no-deps web bundle exec rake test
 
 deployment:
   hub:

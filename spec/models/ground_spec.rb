@@ -1,28 +1,33 @@
 require 'spec_helper'
 
 describe Ground do
-  it { should validate_presence_of(:language) }
+  subject(:model) { FactoryGirl.build(:ground) }
 
-  subject { FactoryGirl.build(:ground) }
+  it { should validate_presence_of(:language) }
 
   it_behaves_like 'a redis model'
 
   describe('.new_or_default') do
+    subject(:model) { Ground.new_or_default(language) }
+
     context 'when language is specified' do
       let(:language) { 'test' }
-      let(:ground)   { Ground.new_or_default(language) }
 
       it 'returns a ground for this language' do
-        expect(ground.language).to eq(language)
+        expect(model.language).to eq(language)
       end
     end
 
     context 'when language is not specified' do
-      let(:ground) { Ground.new_or_default }
+      let(:language) {}
 
       it 'returns a ground with default language' do
-        expect(ground.language).to eq(Editor.default_option_code(:language))
+        expect(model.language).to eq(default_language)
       end
+    end
+
+    def default_language
+      Editor.default_option_code(:language)
     end
   end
 end
