@@ -20,7 +20,7 @@ echo "-----------" >> $LOG_FILE
 
 chmod 777 -R /grounds 2>&1 | tee -a $LOG_FILE
 
-make run 2>&1 | tee -a $LOG_FILE
+make run 2>&1 | tee -a $LOG_FILE &
 cd -
 
 exit 0
