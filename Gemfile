@@ -38,6 +38,7 @@ group :test do
   gem 'simplecov', '~> 0.9.2', require: false
   gem 'simplecov-json', require: false
   gem 'codeclimate-test-reporter', require: false
+  gem 'brakeman', require: false
 end
 
 group :production do
